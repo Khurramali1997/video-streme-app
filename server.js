@@ -3,6 +3,7 @@ import path from "path";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,6 +25,7 @@ mongoose.connect(
 );
 
 app.use(morgan("tiny"));
+app.use(cors());
 
 const Schema = mongoose.Schema;
 const movieSchema = new Schema({
@@ -53,6 +55,7 @@ app.get("/", (req, res) => {
 
 app.post("/upload", (req, res) => {
   console.log(req);
+  res.send(req);
 });
 
 app.listen(PORT, () => {
